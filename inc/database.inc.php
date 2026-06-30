@@ -1,15 +1,14 @@
+<?php
 /**
  * stellt die datenbank verbindung her
  * (über PDO mit mysql)
  */
 
-<?php
-
 // Datenbankverbindungsdaten
 $host = "localhost";
 $dbname = "shopping_list";
 $user = "root";
-$pass = "";
+$pass = "root";
 
 // PDO Verbindung aufbauen
 try {

@@ -1,4 +1,8 @@
 <?php
+/**
+ * enthält alle funktionen für die shopping items
+ * (holen, erstellen, bearbeiten, löschen und status ändern)
+ */
 
 require_once "database.inc.php";
 
