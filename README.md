@@ -1,8 +1,9 @@
-# Shopping List
+# Shopping Liste
 
-## Day One
+# Day One
+Hier habe ich alles selber geschrieben und dann nochmal von Chat GPT Strukturieren lassen, damit alles übersichtlich und verständlich ist.
 
-### Projektbeschreibung
+## Projektbeschreibung (Phase 01)
 Dieses Projekt ist eine webbasierte Einkaufsliste, die mit PHP und MySQL entwickelt wird. Nutzer können Artikel anlegen, anzeigen, bearbeiten und löschen.
 
 ### Projektstruktur
@@ -45,3 +46,44 @@ git commit -m "Erste Version"
 git push
 ```
 Dadurch können Änderungen am Projekt nachvollzogen und verschiedene Entwicklungsstände gesichert werden.
+
+## Datenbank & Backend (Phase 02)
+
+In dieser Phase wurde die Datenbankanbindung über PDO eingerichtet und die grundlegende Backend-Logik umgesetzt.
+
+Die Verbindung zur MySQL-Datenbank `shopping_list` nutzt UTF-8 (`utf8mb4`) und ist so konfiguriert, dass Fehler als Exceptions ausgegeben werden.
+
+Es wurden zentrale CRUD-Funktionen erstellt:
+- `getAllItems()` – alle Einträge laden  
+- `getItemById()` – einzelnes Item laden  
+- `createItem()` – neuen Eintrag erstellen  
+- `updateItem()` – Eintrag bearbeiten  
+- `deleteItem()` – Eintrag löschen  
+- `toggleItemStatus()` – Status ändern  
+- `deleteAllItems()` – alle Einträge löschen  
+
+Alle SQL-Abfragen wurden mit Prepared Statements umgesetzt, um die Anwendung vor SQL-Injection zu schützen.
+
+## Listenansicht (Phase 3)
+In dieser Phase wurde die Darstellung der Einkaufsliste (`list.php`) umgesetzt.
+
+### Aufbau der Seite
+- Überschrift „Meine Einkaufsliste“
+- Anzeige des aktuellen Datums (d.m.Y)
+- Buttons für „Neuer Eintrag“ und „Neue Liste“
+
+### Artikeldarstellung
+- Alle Datensätze werden aus der Datenbank geladen
+- Leere Listen werden entsprechend behandelt
+- Anzeige von Status, Menge, Einheit und Titel
+- Funktionen zum Bearbeiten und Löschen von Einträgen
+
+### Status-Darstellung
+- Erledigte Einträge werden ausgegraut
+- Zusätzlich werden sie durchgestrichen dargestellt
+
+### Sicherheit
+Zur Vermeidung von XSS werden Ausgaben mit `htmlspecialchars()` abgesichert.
+
+### Git-Stand
+Diese Phase wurde versioniert und ins Repository hochgeladen.
