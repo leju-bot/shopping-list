@@ -127,6 +127,10 @@ h1 {
     color: white;
 }
 
+.clear-form {
+    display: inline;
+}
+
 
 .empty {
     color: #888;
