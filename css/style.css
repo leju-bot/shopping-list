@@ -94,3 +94,35 @@ h1 {
     text-align: center;
     padding: 20px;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input,
+select,
+textarea {
+    padding: 8px;
+    font-size: 14px;
+}
+
+textarea {
+    min-height: 80px;
+}
+
+.error {
+    color: red;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+.status-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.status-link:hover {
+    text-decoration: underline;
+}

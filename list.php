@@ -47,7 +47,8 @@ $items = getAllItems();
 
                 <div class="main">
                     <span class="qty">
-                        <?= $item["quantity"] ?> <?= $item["unit"] ?>
+                        <?= htmlspecialchars($item["quantity"]) ?>
+                        <?= htmlspecialchars($item["unit"]) ?>
                     </span>
 
                     <strong class="title"><?= $title ?></strong>
@@ -57,13 +58,10 @@ $items = getAllItems();
                     <?php endif; ?>
                 </div>
 
-                <div class="status">
-                    <?= $done ? "✔ erledigt" : "⏳ offen" ?>
-                </div>
-
                 <div class="buttons">
-                    <a href="update.php?id=<?= $item["id"] ?>">Bearbeiten</a>
-                    <a href="delete.php?id=<?= $item["id"] ?>">Löschen</a>
+                    <a href="check.php?id=<?= $item["id"] ?>">✅</a>
+                    <a href="delete.php?id=<?= $item["id"] ?>">❌</a>
+                    <a href="update.php?id=<?= $item["id"] ?>">✏️</a>
                 </div>
 
             </div>
