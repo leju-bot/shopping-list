@@ -2,16 +2,24 @@
 
 require_once "inc/database_functions.inc.php";
 
-$id = (int)($_GET['id'] ?? 0);
+// ID aus Formular lesen
+$id = (int) ($_POST['id'] ?? 0);
 
-$item = getItemById($id);
+// ID prüfen
+if ($id > 0) {
 
-if ($item) {
+    // Datensatz laden
+    $item = getItemById($id);
 
-    $newStatus = $item['status'] ? 0 : 1;
+    // Status umschalten
+    if ($item) {
 
-    toggleItemStatus($id, $newStatus);
+        $newStatus = $item['status'] ? 0 : 1;
+
+        toggleItemStatus($id, $newStatus);
+    }
 }
 
-header("Location: list.php");
+// Zurück zur Liste
+header('Location: list.php');
 exit;

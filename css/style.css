@@ -32,6 +32,7 @@ h1 {
     background: #007bff;
     color: white;
     text-decoration: none;
+    text-align: center;
     border-radius: 5px;
     margin-right: 10px;
 }
@@ -81,6 +82,7 @@ h1 {
 
 .buttons a {
     margin-left: 10px;
+    text-align: center;
     text-decoration: none;
     color: #007bff;
 }
@@ -88,6 +90,43 @@ h1 {
 .buttons a:hover {
     text-decoration: underline;
 }
+
+.status-form {
+    display: inline;
+}
+
+.status-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
+    color: inherit;
+    padding: 0;
+}
+
+.status-button:hover {
+    text-decoration: underline;
+}
+
+.delete-form {
+    display: inline;
+}
+
+.delete-form button {
+    background: none;
+    border: 1px solid #0864c6;
+    color: #0864c6;
+    cursor: pointer;
+    font-size: inherit;
+    border-radius: 6px; 
+    margin: 6px;
+}
+
+.delete-form button:hover {
+    background-color: #666;
+    color: white;
+}
+
 
 .empty {
     color: #888;
@@ -125,4 +164,15 @@ textarea {
 
 .status-link:hover {
     text-decoration: underline;
+}
+
+.item-details {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+}
+
+.item-details p {
+    margin: 5px 0;
 }

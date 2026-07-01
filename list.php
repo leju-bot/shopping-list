@@ -27,8 +27,22 @@ $items = getAllItems();
     </p>
 
     <div class="actions">
-        <a class="btn" href="create.php">+ Neuer Eintrag</a>
-        <a class="btn danger" href="clear.php">Neue Liste</a>
+        
+        <form action="clear.php" method="post" class="clear-form">
+
+            <button
+                type="submit"
+                class="btn danger"
+                onclick="return confirm('Wirklich alle Einträge löschen?')"
+            >
+                Neue Liste
+            </button>
+
+            <a class="btn" href="create.php">+ Neuer Eintrag</a>
+
+</form>
+
+
     </div>
 
     <?php if (empty($items)): ?>
@@ -58,10 +72,59 @@ $items = getAllItems();
                     <?php endif; ?>
                 </div>
 
+                <div class="status">
+
+                    <form action="check.php" method="post" class="status-form">
+
+                        <input
+                            type="hidden"
+                            name="id"
+                            value="<?= $item['id'] ?>"
+                        >
+
+                        <button type="submit" class="status-button">
+                            <?= $done ? "✔ erledigt" : "⏳ offen" ?>
+                        </button>
+
+                    </form>
+
+                </div>
+
                 <div class="buttons">
-                    <a href="check.php?id=<?= $item["id"] ?>">✅</a>
-                    <a href="delete.php?id=<?= $item["id"] ?>">❌</a>
-                    <a href="update.php?id=<?= $item["id"] ?>">✏️</a>
+                    <a href="update.php?id=<?= $item["id"] ?>">🖋️</a>
+                    <form action="delete.php" method="post" class="delete-form">
+                    <input
+                        type="hidden"
+                        name="id"
+                        value="<?= $item['id'] ?>"
+                    >
+
+                    <button
+                        type="submit"
+                        onclick="return confirm('Eintrag wirklich löschen?')"
+                    >
+                        Löschen
+                    </button>
+                </form>
+                </div>
+
+                <div class="item-details">
+
+                    <p>
+                        <strong>ID:</strong>
+                        <?= htmlspecialchars($item['id']) ?>
+                    </p>
+
+                    <p>
+                        <strong>Erstellt am:</strong>
+                        <?= date('d.m.Y H:i', strtotime($item['created_at'])) ?>
+                    </p>
+
+                    <p>
+                        <strong>Zuletzt geändert:</strong>
+                        <?= date('d.m.Y H:i', strtotime($item['updated_at'])) ?>
+                    </p>
+
                 </div>
 
             </div>

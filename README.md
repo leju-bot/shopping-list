@@ -1,7 +1,8 @@
 # Shopping Liste
+-- Hier habe ich alles selber geschrieben und dann nochmal von Chat GPT Strukturieren lassen, 
+   damit alles übersichtlich und verständlich ist.
 
 # Day One
-Hier habe ich alles selber geschrieben und dann nochmal von Chat GPT Strukturieren lassen, damit alles übersichtlich und verständlich ist.
 
 ## Projektbeschreibung (Phase 01)
 Dieses Projekt ist eine webbasierte Einkaufsliste, die mit PHP und MySQL entwickelt wird. Nutzer können Artikel anlegen, anzeigen, bearbeiten und löschen.
@@ -87,3 +88,25 @@ Zur Vermeidung von XSS werden Ausgaben mit `htmlspecialchars()` abgesichert.
 
 ### Git-Stand
 Diese Phase wurde versioniert und ins Repository hochgeladen.
+
+# Day 02
+
+# Neuen Eintrag erstellen `create.php` (Phase 4)
+
+In dieser Phase wurde die Seite `create.php` entwickelt, mit der neue Einträge angelegt werden können. Das Formular enthält die Felder Titel, Menge, Einheit, Zusatzinformation und Kategorie.
+
+Die Seite wurde als Self-Submitting-Formular umgesetzt. Dadurch ist dieselbe Datei sowohl für die Anzeige des Formulars als auch für die Verarbeitung der abgesendeten Daten verantwortlich.
+
+Vor dem Speichern werden alle Eingaben überprüft. Dabei wird sichergestellt, dass der Titel ausgefüllt wurde, die Menge einen gültigen Wert enthält und eine Einheit sowie eine Kategorie ausgewählt wurden. Auch die Zusatzinformationen werden auf gültige Eingaben geprüft.
+
+Falls fehlerhafte oder unvollständige Daten eingegeben werden, erhält der Benutzer entsprechende Fehlermeldungen. Bereits eingegebene Werte bleiben dabei erhalten, damit das Formular nicht erneut vollständig ausgefüllt werden muss.
+
+Über die Schaltfläche „Abbrechen“ gelangt der Benutzer zurück zur `list.php`. Nach erfolgreichem Speichern wird ebenfalls automatisch auf die Übersichtsseite weitergeleitet.
+
+Der Abschluss dieser Phase wurde mit folgendem Git-Commit dokumentiert:
+
+```bash id="q7m3nk"
+git commit -m "Formular zum Anlegen neuer Einträge ergänzt"
+```
+
+

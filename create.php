@@ -2,6 +2,8 @@
 
 require_once "inc/database_functions.inc.php";
 
+//
+
 $errors = [];
 
 $title = '';
