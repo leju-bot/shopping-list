@@ -1,57 +1,79 @@
 <?php
+/*
+ * Dieses Skript dient zum Bearbeiten eines vorhandenen Eintrags.
+ * Die Daten werden anhand der übergebenen ID geladen und im
+ * Formular angezeigt. Nach dem Absenden werden die Eingaben
+ * validiert und bei erfolgreicher Prüfung in der Datenbank
+ * aktualisiert. Anschließend erfolgt die Weiterleitung zur
+ * Übersichtsseite.
+ */
 
 require_once "inc/database_functions.inc.php";
 
+// ID aus der URL auslesen und in Integer umwandeln
 $id = (int)($_GET['id'] ?? 0);
 
+// Datensatz anhand der ID laden
 $item = getItemById($id);
 
+// Falls kein Datensatz gefunden wurde, zurück zur Liste
 if (!$item) {
     header('Location: list.php');
     exit;
 }
 
+// Array für Validierungsfehler
 $errors = [];
 
+// Vorhandene Daten für die Formularvorbelegung übernehmen
 $title = $item['title'];
 $quantity = $item['quantity'];
 $unit = $item['unit'];
 $information = $item['information'];
 $category = $item['category'];
 
+// Erlaubte Werte für Select-Felder
 $allowedUnits = ['l', 'g', 'kg', 'St.', 'Pk.'];
 $allowedCategories = ['food', 'convenience', 'non-food'];
 
+// Formular wurde abgesendet
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    // Formulardaten einlesen und bereinigen
     $title = trim($_POST['title'] ?? '');
     $quantity = trim($_POST['quantity'] ?? '');
     $unit = $_POST['unit'] ?? '';
     $information = trim($_POST['information'] ?? '');
     $category = $_POST['category'] ?? '';
 
+    // Titel prüfen
     if ($title === '') {
         $errors['title'] = 'Bitte einen Titel eingeben.';
     }
 
+    // Menge prüfen
     if ($quantity === '') {
         $errors['quantity'] = 'Bitte eine Menge eingeben.';
     } elseif (!is_numeric($quantity) || $quantity <= 0) {
         $errors['quantity'] = 'Bitte eine gültige Menge eingeben.';
     }
 
+    // Einheit prüfen
     if (!in_array($unit, $allowedUnits, true)) {
         $errors['unit'] = 'Bitte eine gültige Einheit auswählen.';
     }
 
+    // Maximale Länge der Zusatzinformation prüfen
     if (strlen($information) > 120) {
         $errors['information'] = 'Maximal 120 Zeichen erlaubt.';
     }
 
+    // Kategorie prüfen
     if (!in_array($category, $allowedCategories, true)) {
         $errors['category'] = 'Bitte eine gültige Kategorie auswählen.';
     }
 
+    // Datensatz speichern, wenn keine Fehler vorhanden sind
     if (empty($errors)) {
 
         updateItem(
@@ -63,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $category
         );
 
+        // Nach erfolgreicher Bearbeitung zurück zur Liste
         header('Location: list.php');
         exit;
     }
@@ -82,6 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <h1>Eintrag bearbeiten</h1>
 
+    <!-- Formular zur Bearbeitung eines vorhandenen Eintrags -->
     <form method="post">
 
         <label>Titel</label>
@@ -103,6 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label>Einheit</label>
         <select name="unit">
 
+            <!-- Verfügbare Einheiten dynamisch erzeugen -->
             <?php foreach ($allowedUnits as $value): ?>
                 <option value="<?= $value ?>"
                     <?= $unit === $value ? 'selected' : '' ?>>

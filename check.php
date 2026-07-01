@@ -1,25 +1,39 @@
 <?php
 
-require_once "inc/database_functions.inc.php";
+require_once 'inc/database_functions.inc.php';
 
-// ID aus Formular lesen
-$id = (int) ($_POST['id'] ?? 0);
+/**
+ * Wechselt den Status eines Datensatzes (Toggle-Funktion)
+ *
+ * Liest die ID aus dem POST-Request, prüft die Gültigkeit,
+ * lädt den Datensatz, kehrt den Status um (0/1)
+ * und speichert die Änderung in der Datenbank.
+ */
 
-// ID prüfen
-if ($id > 0) {
+// ID aus POST holen und validieren (muss Integer sein)
+$id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
 
-    // Datensatz laden
-    $item = getItemById($id);
-
-    // Status umschalten
-    if ($item) {
-
-        $newStatus = $item['status'] ? 0 : 1;
-
-        toggleItemStatus($id, $newStatus);
-    }
+// Prüfen, ob die ID gültig ist
+if (!$id || $id < 1) {
+    header('Location: list.php');
+    exit;
 }
 
-// Zurück zur Liste
+// Datensatz anhand der ID laden
+$item = getItemById($id);
+
+// Prüfen, ob der Datensatz existiert
+if (!$item) {
+    header('Location: list.php');
+    exit;
+}
+
+// Aktuellen Status umkehren (0 -> 1, 1 -> 0)
+$newStatus = $item['status'] ? 0 : 1;
+
+// Neuen Status speichern
+toggleItemStatus($id, $newStatus);
+
+// Zurück zur Übersicht
 header('Location: list.php');
 exit;

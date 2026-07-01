@@ -2,8 +2,6 @@
 
 require_once "inc/database_functions.inc.php";
 
-//
-
 $errors = [];
 
 $title = '';
@@ -26,6 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Titel prüfen
     if ($title === '') {
         $errors['title'] = 'Bitte einen Titel eingeben.';
+    } else {
+
+        if (strlen($title) < 2) {
+            $errors['title'] = 'Der Titel muss mindestens 2 Zeichen lang sein.';
+        }
+
+        if (strlen($title) > 40) {
+            $errors['title'] = 'Der Titel darf maximal 40 Zeichen lang sein.';
+        }
     }
 
     // Menge prüfen

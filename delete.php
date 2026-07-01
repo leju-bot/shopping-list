@@ -1,19 +1,27 @@
 <?php
 
-require_once "inc/database_functions.inc.php";
+require_once 'inc/database_functions.inc.php';
 
-// ID aus dem Formular lesen
-$id = (int) ($_POST['id'] ?? 0);
+/**
+ * Löscht einen Datensatz anhand der übergebenen ID
+ * und leitet anschließend zurück zur Übersicht.
+ */
 
-// ID prüfen
-if ($id > 0) {
+// ID aus dem POST-Request lesen und als Integer validieren
+$id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
 
-    /**
-     * Datensatz löschen
-     */
-    deleteItem($id);
+// Prüfen, ob eine gültige ID übergeben wurde
+if ($id && $id > 0) {
+
+    // Datensatz anhand der ID laden
+    $item = getItemById($id);
+
+    // Datensatz nur löschen, wenn er existiert
+    if ($item) {
+        deleteItem($id);
+    }
 }
 
-// Zurück zur Liste
+// Zur Liste zurückkehren
 header('Location: list.php');
 exit;

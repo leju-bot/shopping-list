@@ -109,4 +109,18 @@ Der Abschluss dieser Phase wurde mit folgendem Git-Commit dokumentiert:
 git commit -m "Formular zum Anlegen neuer Einträge ergänzt"
 ```
 
+## Bearbeiten von Einträgen (Phase 5)
+Für bestehende Einträge wurde eine Bearbeitungsfunktion umgesetzt. Die vorhandenen Daten werden beim Öffnen des Formulars automatisch geladen und vorausgefüllt. Änderungen können gespeichert oder verworfen werden.
+
+Zusätzlich werden die ID des Eintrags sowie das Erstellungs- und Änderungsdatum zur Information angezeigt. Die Eingaben werden mit denselben Validierungsregeln geprüft wie beim Anlegen neuer Einträge.
+
+## Löschen von Einträgen (Phase 6)
+Die Anwendung wurde um eine Löschfunktion erweitert. Einträge können über ein Formular gelöscht werden, wobei die ID per POST übertragen wird. Vor dem Löschen erscheint eine Sicherheitsabfrage zur Bestätigung. Nach erfolgreichem Löschen erfolgt die Weiterleitung zur Listenansicht.
+
+## Statusänderung (Phase 7)
+Einträge können nun als erledigt oder offen markiert werden. Die Statusänderung erfolgt über ein Formular mit POST-Übertragung. Beim Anklicken wird der aktuelle Status umgeschaltet und anschließend die aktualisierte Liste angezeigt.
+
+## Neue Liste (Phase 8)
+Die Anwendung wurde um die Funktion „Neue Liste“ erweitert. Über ein POST-Formular können alle Einträge der Einkaufsliste auf einmal gelöscht werden. Vor dem Löschen erscheint eine Sicherheitsabfrage. Nach erfolgreicher Ausführung wird automatisch zur Listenansicht zurückgeleitet.
+
 
