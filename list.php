@@ -6,9 +6,7 @@
  */
 require_once "inc/database_functions.inc.php";
 
-/**
- * lädt alle Einkaufsartikel aus der Datenbank
- */
+// lädt alle Einkaufsartikel aus der Datenbank
 $items = getAllItems();
 
 ?>
@@ -41,6 +39,15 @@ $items = getAllItems();
             + Neuer Eintrag
         </a>
 
+        <!-- Filter -->
+        <a class="btn" href="list.php">
+            Alle anzeigen
+        </a>
+
+        <a class="btn" href="list.php?filter=open">
+            Erledigte ausblenden
+        </a>
+
         <!-- Formular zum Löschen aller Einträge -->
         <form action="clear.php" method="post" class="clear-form">
 
@@ -65,13 +72,17 @@ $items = getAllItems();
 
     <?php else: ?>
 
+        <?php
+        $currentCategory = "";
+        $hideDone = isset($_GET["filter"]) && $_GET["filter"] === "open";
+        ?>
+
         <!-- alle Einträge durchlaufen -->
         <?php foreach ($items as $item): ?>
 
             <?php
 
             // Ausgaben absichern (Schutz vor HTML-/Script-Eingaben)
-            
             $title = htmlspecialchars($item["title"]);
             $info = htmlspecialchars($item["information"]);
             $quantity = htmlspecialchars($item["quantity"]);
@@ -79,6 +90,36 @@ $items = getAllItems();
 
             // prüft ob der Eintrag erledigt ist
             $done = (int) $item["status"] === 1;
+
+            // erledigte Einträge ausblenden
+            if ($hideDone && $done) {
+                continue;
+            }
+
+            ?>
+
+            <?php
+
+            if ($item['category'] !== $currentCategory) {
+
+                $currentCategory = $item['category'];
+
+                switch ($currentCategory) {
+
+                    case 'food':
+                        echo '<h2>Lebensmittel</h2>';
+                        break;
+
+                    case 'convenience':
+                        echo '<h2>Fertigprodukte</h2>';
+                        break;
+
+                    case 'non-food':
+                        echo '<h2>Non-Food</h2>';
+                        break;
+                }
+
+            }
 
             ?>
 
@@ -121,9 +162,7 @@ $items = getAllItems();
 
                         <!-- Status umschalten -->
                         <button type="submit" class="status-button">
-
                             <?= $done ? "✔ erledigt" : "⏳ offen" ?>
-
                         </button>
 
                     </form>

@@ -1,6 +1,9 @@
 # Shopping Liste
--- Hier habe ich alles selber geschrieben und dann nochmal von Chat GPT Strukturieren lassen, 
-   damit alles übersichtlich und verständlich ist.
+Den Inhalt habe ich zunächst selbst formuliert und anschließend mit ChatGPT strukturiert, um ihn übersichtlicher und verständlicher darzustellen.
+
+Dieses Vorgehen habe ich im gesamten Projekt angewendet. Dabei habe ich die Inhalte eigenständig erarbeitet und ChatGPT wiederholt als Unterstützung zum Strukturieren sowie zum Diskutieren und Brainstormen von Ideen genutzt.
+
+Da ich mich noch in der Einarbeitung in die Programmierung befinde, habe ich mir in einigen Fällen auch Codebeispiele von ChatGPT generieren lassen, wenn ich in den bereitgestellten Unterlagen keine passende Lösung oder kein geeignetes Beispiel für meine konkrete Fragestellung gefunden habe. Die generierten Vorschläge habe ich anschließend geprüft, an mein Projekt angepasst und in den jeweiligen Kontext integriert. 
 
 # Day One
 
@@ -91,7 +94,7 @@ Diese Phase wurde versioniert und ins Repository hochgeladen.
 
 # Day 02
 
-# Neuen Eintrag erstellen `create.php` (Phase 4)
+## Neuen Eintrag erstellen `create.php` (Phase 4)
 
 In dieser Phase wurde die Seite `create.php` entwickelt, mit der neue Einträge angelegt werden können. Das Formular enthält die Felder Titel, Menge, Einheit, Zusatzinformation und Kategorie.
 
@@ -123,4 +126,12 @@ Einträge können nun als erledigt oder offen markiert werden. Die Statusänderu
 ## Neue Liste (Phase 8)
 Die Anwendung wurde um die Funktion „Neue Liste“ erweitert. Über ein POST-Formular können alle Einträge der Einkaufsliste auf einmal gelöscht werden. Vor dem Löschen erscheint eine Sicherheitsabfrage. Nach erfolgreicher Ausführung wird automatisch zur Listenansicht zurückgeleitet.
 
+## Sicherheit und Fehlerbehandlung (Phase 9)
+Die Anwendung wurde um zusätzliche Sicherheits- und Validierungsprüfungen erweitert. IDs werden vor Datenbankzugriffen auf Gültigkeit geprüft und nur vorhandene Datensätze verarbeitet.
 
+Zusätzlich wurden alle Benutzereingaben validiert und sämtliche Ausgaben mit `htmlspecialchars()` abgesichert. Dadurch werden fehlerhafte Eingaben abgefangen und potenzielle Sicherheitsrisiken wie Cross-Site-Scripting reduziert.
+
+# Day 03 
+
+## Erweiterungen (Phase 10)
+Die Listenansicht wurde erweitert und nach Kategorien gegliedert. Die Einkaufsartikel werden nun unter den Überschriften „Lebensmittel“, „Fertigprodukte“ und „Non-Food“ angezeigt. Zusätzlich wurde ein Filter ergänzt, mit dem erledigte Einträge bei Bedarf ausgeblendet werden können.
