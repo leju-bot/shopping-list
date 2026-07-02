@@ -129,3 +129,14 @@ Zusätzlich wurden alle Benutzereingaben validiert und sämtliche Ausgaben mit `
 ## Erweiterungen (Phase 10)
 Die Listenansicht wurde erweitert und nach Kategorien gegliedert. Die Einkaufsartikel werden nun unter den Überschriften „Lebensmittel“, „Fertigprodukte“ und „Non-Food“ angezeigt. Zusätzlich wurde ein Filter ergänzt, mit dem erledigte Einträge bei Bedarf ausgeblendet werden können.
 
+# Day 04 (3,5)
+
+## Testphase (Phase 11)
+
+Zum Abschluss wurde die gesamte Anwendung getestet. Dabei wurden alle Funktionen überprüft: Einträge anlegen, bearbeiten, löschen und als erledigt markieren sowie das Erstellen einer neuen Liste. Außerdem wurden die Eingabevalidierung und die Fehlermeldungen getestet. Es wurde geprüft, dass eingegebene Werte bei Fehlern erhalten bleiben, ungültige IDs korrekt behandelt werden und Sonderzeichen sicher ausgegeben werden. Auch die Weiterleitung über die `index.php` wurde erfolgreich getestet.
+
+## Abgabe (Phase 12)
+
+Vor der Abgabe wurde der Code noch einmal bereinigt. Nicht mehr benötigter Debug-Code und `var_dump()`-Ausgaben wurden entfernt. Außerdem wurden Kommentare und Formatierung überprüft.
+
+Im README wurden die Projektbeschreibung, die Voraussetzungen, die Einrichtung der Datenbank, die verwendete SQL-Datei sowie die wichtigsten Funktionen der Anwendung dokumentiert. Abschließend wurde die Git-Commit-Historie kontrolliert und ein letzter Abschluss-Commit erstellt.

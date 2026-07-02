@@ -5,9 +5,7 @@ require_once "inc/database_functions.inc.php";
 // Nur POST-Anfragen erlauben
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    /**
-     * Alle Datensätze löschen
-     */
+    //Alle Datensätze löschen
     deleteAllItems();
 }
 

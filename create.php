@@ -1,20 +1,31 @@
 <?php
+/**
+ * Erstellt einen neuen Eintrag.
+ *
+ * Das Formular wird angezeigt, Benutzereingaben werden validiert
+ * und bei erfolgreicher Prüfung in der Datenbank gespeichert.
+ */
 
 require_once "inc/database_functions.inc.php";
 
+// Array für Fehlermeldungen
 $errors = [];
 
+// Formularvariablen initialisieren
 $title = '';
 $quantity = '';
 $unit = '';
 $information = '';
 $category = '';
 
+// Erlaubte Werte für Auswahlfelder
 $allowedUnits = ['l', 'g', 'kg', 'St.', 'Pk.'];
 $allowedCategories = ['food', 'convenience', 'non-food'];
 
+// Formular wurde abgeschickt
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    // Benutzereingaben übernehmen
     $title = trim($_POST['title'] ?? '');
     $quantity = trim($_POST['quantity'] ?? '');
     $unit = $_POST['unit'] ?? '';
@@ -57,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors['category'] = 'Bitte eine gültige Kategorie auswählen.';
     }
 
-    // Speichern
+    // Daten speichern, wenn keine Fehler vorhanden sind
     if (empty($errors)) {
 
         createItem(
@@ -68,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $category
         );
 
+        // Nach erfolgreichem Speichern zur Übersicht wechseln
         header('Location: list.php');
         exit;
     }
@@ -88,6 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <h1>Neuer Eintrag</h1>
 
+    <!-- Formular zum Erstellen eines neuen Eintrags -->
     <form method="post">
 
         <label for="title">Titel</label>
@@ -97,6 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             name="title"
             value="<?= htmlspecialchars($title) ?>"
         >
+        <!-- Fehlermeldung zum Titel -->
         <?php if (isset($errors['title'])): ?>
             <p class="error"><?= $errors['title'] ?></p>
         <?php endif; ?>
@@ -109,6 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             name="quantity"
             value="<?= htmlspecialchars($quantity) ?>"
         >
+        <!-- Fehlermeldung zur Menge -->
         <?php if (isset($errors['quantity'])): ?>
             <p class="error"><?= $errors['quantity'] ?></p>
         <?php endif; ?>
@@ -117,6 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <select name="unit" id="unit">
             <option value="">Bitte wählen</option>
 
+            <!-- Erlaubte Einheiten ausgeben -->
             <?php foreach ($allowedUnits as $value): ?>
                 <option
                     value="<?= $value ?>"
@@ -161,16 +177,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </option>
         </select>
 
+        <!-- Fehlermeldung zur Kategorie -->
         <?php if (isset($errors['category'])): ?>
             <p class="error"><?= $errors['category'] ?></p>
         <?php endif; ?>
 
         <div class="actions">
 
+            <!-- Formular absenden -->
             <button type="submit" class="btn">
                 Speichern
             </button>
 
+            <!-- Zur Übersicht zurückkehren -->
             <a href="list.php" class="btn danger">
                 Abbrechen
             </a>

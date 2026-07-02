@@ -32,7 +32,7 @@ $unit = $item['unit'];
 $information = $item['information'];
 $category = $item['category'];
 
-// Erlaubte Werte für Select-Felder
+// Erlaubte Werte für Auswahlfelder
 $allowedUnits = ['l', 'g', 'kg', 'St.', 'Pk.'];
 $allowedCategories = ['food', 'convenience', 'non-food'];
 
