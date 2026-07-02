@@ -95,19 +95,12 @@ Diese Phase wurde versioniert und ins Repository hochgeladen.
 # Day 02
 
 ## Neuen Eintrag erstellen `create.php` (Phase 4)
-
 In dieser Phase wurde die Seite `create.php` entwickelt, mit der neue Einträge angelegt werden können. Das Formular enthält die Felder Titel, Menge, Einheit, Zusatzinformation und Kategorie.
-
 Die Seite wurde als Self-Submitting-Formular umgesetzt. Dadurch ist dieselbe Datei sowohl für die Anzeige des Formulars als auch für die Verarbeitung der abgesendeten Daten verantwortlich.
-
 Vor dem Speichern werden alle Eingaben überprüft. Dabei wird sichergestellt, dass der Titel ausgefüllt wurde, die Menge einen gültigen Wert enthält und eine Einheit sowie eine Kategorie ausgewählt wurden. Auch die Zusatzinformationen werden auf gültige Eingaben geprüft.
-
 Falls fehlerhafte oder unvollständige Daten eingegeben werden, erhält der Benutzer entsprechende Fehlermeldungen. Bereits eingegebene Werte bleiben dabei erhalten, damit das Formular nicht erneut vollständig ausgefüllt werden muss.
-
 Über die Schaltfläche „Abbrechen“ gelangt der Benutzer zurück zur `list.php`. Nach erfolgreichem Speichern wird ebenfalls automatisch auf die Übersichtsseite weitergeleitet.
-
 Der Abschluss dieser Phase wurde mit folgendem Git-Commit dokumentiert:
-
 ```bash id="q7m3nk"
 git commit -m "Formular zum Anlegen neuer Einträge ergänzt"
 ```
@@ -123,6 +116,8 @@ Die Anwendung wurde um eine Löschfunktion erweitert. Einträge können über ei
 ## Statusänderung (Phase 7)
 Einträge können nun als erledigt oder offen markiert werden. Die Statusänderung erfolgt über ein Formular mit POST-Übertragung. Beim Anklicken wird der aktuelle Status umgeschaltet und anschließend die aktualisierte Liste angezeigt.
 
+# Day 03 
+
 ## Neue Liste (Phase 8)
 Die Anwendung wurde um die Funktion „Neue Liste“ erweitert. Über ein POST-Formular können alle Einträge der Einkaufsliste auf einmal gelöscht werden. Vor dem Löschen erscheint eine Sicherheitsabfrage. Nach erfolgreicher Ausführung wird automatisch zur Listenansicht zurückgeleitet.
 
@@ -131,7 +126,6 @@ Die Anwendung wurde um zusätzliche Sicherheits- und Validierungsprüfungen erwe
 
 Zusätzlich wurden alle Benutzereingaben validiert und sämtliche Ausgaben mit `htmlspecialchars()` abgesichert. Dadurch werden fehlerhafte Eingaben abgefangen und potenzielle Sicherheitsrisiken wie Cross-Site-Scripting reduziert.
 
-# Day 03 
-
 ## Erweiterungen (Phase 10)
 Die Listenansicht wurde erweitert und nach Kategorien gegliedert. Die Einkaufsartikel werden nun unter den Überschriften „Lebensmittel“, „Fertigprodukte“ und „Non-Food“ angezeigt. Zusätzlich wurde ein Filter ergänzt, mit dem erledigte Einträge bei Bedarf ausgeblendet werden können.
+
